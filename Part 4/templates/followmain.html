@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Manage Follows - Finstagram</title>
+    </head>
+
+    <body>
+        <h1>Manage Follows</h1>
+
+        <form action="/followuser" method="post">
+            <h3>Send a follow request</h3>
+            <input type="text" name="username" placeholder="Username" required />
+            <br />
+            <input type="submit" value="Send request" />
+        </form>
+
+        <h3>Requests to follow you</h3>
+
+        <style type="text/css">
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+
+        <form action="/managefollows" method="post">
+            <table>
+                <th>username</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>accept</th>
+                <th>decline</th>
+
+
+                {% for req in followreqs %}
+                <tr>
+                    <td>{{req.username}}</td>
+                    <td>{{req.firstName}}</td>
+                    <td>{{req.lastName}}</td>
+                    <td><input type="radio" name={{req.username}} value="1" /> Accept</td>
+                    <td><input type="radio" name={{req.username}} value="0" /> Decline</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if msg %}
+        <h4>{{msg}}</h4>
+        {% endif %}
+
+        <a href="/">Go back</a>
+    </body>
+</html>

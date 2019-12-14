@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Manage Friendgroups - Finstagram</title>
+    </head>
+
+    <body>
+        <h1>Manage Friendgroups</h1>
+
+        <form action="/createfriendgroup" method="post">
+            <h3>Create a Friendgroup</h3>
+            <h5>Enter a group name</h5>
+            <input type="text" name="group_name" placeholder="Group name" required />
+            <br />
+
+            <h5>Enter an optional description</h5>
+            <textarea name="description" rows="5" cols="50" placeholder="Description (optional)"></textarea>
+            <br />
+            <input type="submit" value="Create Friendgroup" />
+        </form>
+
+        <h3>Your existing Friendgroups</h3>
+
+        <style type="text/css">
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+
+        <form>
+            <table>
+                <th>groupOwner</th>
+                <th>groupName</th>
+                <th>description</th>
+              
+                {% for group in friendgroups %}
+                <tr>
+                    <td>{{group.groupOwner}}</td>
+                    <td>{{group.groupName}}</td>
+                    <td>{{group.description}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+
+        {% if msg %}
+        <h4>{{msg}}</h4>
+        {% endif %}
+
+        <a href="/">Go back</a>
+    </body>
+</html>

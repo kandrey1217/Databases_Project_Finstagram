@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Image Gallery - Finstagram</title>
+    </head>
+    <body>
+        <h1>Image Gallery</h1>
+
+        <form action="/posterimages" method="post">
+            <h3>Search for a specific user's photos</h3>
+            <input type="text" name="username" placeholder="Username" required />
+            <br />
+            <input type="submit" value="Search" />
+        </form>
+
+        <h3>Images</h3>
+
+        <style type="text/css">
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+
+        <table>
+            <th>photoID</th>
+            <th>photoPoster</th>
+            <th>photo</th>
+
+            <th>firstName (photoPoster)</th>
+            <th>lastName (photoPoster)</th>
+            <th>postingdate</th>
+
+            <th>firstName (tagged)</th>
+            <th>lastName (tagged)</th>
+            <th>username (tagged)</th>
+
+            <th>username (Likes)</th>
+            <th>rating</th>
+
+            {% for image in images %}
+            <tr>
+                <td>{{image.photoID}}</td>
+                <td>{{image.photoPoster}}</td>
+                <td><img src="/images/{{image.filepath}}" width="400" /></td>
+
+                <td>{{image.posterFirstName}}</td>
+                <td>{{image.posterLastName}}</td>
+                <td>{{image.postingdate}}</td>
+
+                <td>{{image.tagFirstName}}</td>
+                <td>{{image.tagLastName}}</td>
+                <td>{{image.tagUsername}}</td>
+
+                <td>{{image.likesUsername}}</td>
+                <td>{{image.rating}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">Go back</a>
+    </body>
+</html>
